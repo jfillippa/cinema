@@ -1,30 +1,38 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <Navbar />
+  <Carrousel :movies-data="featuredMovies" />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<script setup>
+import Navbar from "./components/Navbar.vue";
+import Carrousel from "./components/Carrousel.vue";
+
+const featuredMovies = [
+  {
+    title: "John Wick 4",
+    score: 8,
+    trailer: "https://www.youtube.com/watch?v=L0anWmmd8TI",
+    synopsis:
+      "El marqués Vincent de Gramont pretende matar a John Wick para afianzar su poder en la Orden Suprema. \nSin embargo, John tratará de adelantarse a cada uno de sus movimientos hasta lograr enfrentarse cara a cara con su peor enemigo.",
+    image: "/images/john-wick.jpeg",
+  },
+  {
+    title: "John Wick 13123",
+    score: 8,
+    trailer: "https://www.youtube.com/watch?v=L0anWmmd8TI",
+    synopsis:
+      "El marqués Vincent de Gramont pretende matar a John Wick para afianzar su poder en la Orden Suprema. \n\n Sin embargo, John tratará de adelantarse a cada uno de sus movimientos hasta lograr enfrentarse cara a cara con su peor enemigo.",
+    image: "/images/john-wick.jpeg",
+  },
+  {
+    title: "John Wick 1283u18",
+    score: 8,
+    trailer: "https://www.youtube.com/watch?v=L0anWmmd8TI",
+    synopsis:
+      "El marqués Vincent de Gramont pretende matar a John Wick para afianzar su poder en la Orden Suprema. Sin embargo, John tratará de adelantarse a cada uno de sus movimientos hasta lograr enfrentarse cara a cara con su peor enemigo.",
+    image: "/images/john-wick.jpeg",
+  },
+];
+</script>
+
+<style scoped></style>
