@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar-container">
-    <img src="/images/logo.jpeg" class="logo" />
+    <img src="/images/logo.svg" class="logo" />
     <div class="buttons-container">
       <a class="bold"> Destacadas </a>
       <a> Cartelera </a>
@@ -22,6 +22,7 @@ import BuyTicketButton from "./BuyTicketButton.vue";
   padding: 8px 40px;
   justify-content: space-between;
   align-items: center;
+  z-index: 2;
 
   .logo {
     height: 50px;
