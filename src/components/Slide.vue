@@ -73,21 +73,26 @@ function isMobile() {
   .movie-image-container {
     position: relative;
     display: flex;
-    width: 100%;
+    width: fit-content;
     margin-top: 30px;
     margin-left: 15px;
-    justify-content: right;
+    justify-self: right;
     @media (width <= 800px) {
       justify-content: center;
+      justify-self: center;
       margin-left: 0;
     }
 
     .movie-image {
-      height: 75vh;
-      width: 29vw;
+      height: auto;
+      width: 26vw;
       @media (width <= 800px) {
         width: 400px;
-        height: 65vh;
+        // height: 65vh;
+      }
+      @media (width <= 500px) {
+        width: 80%;
+        height: auto;
       }
     }
   }
@@ -96,7 +101,6 @@ function isMobile() {
     display: flex;
     flex-direction: column;
     gap: 50px;
-    margin-left: 15px;
     padding-block: 50px;
     @media (width <= 800px) {
       padding-block: 0;

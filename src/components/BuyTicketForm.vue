@@ -127,7 +127,6 @@ watchEffect(() => {
 });
 
 const submitForm = () => {
-  console.log(isValidForm);
   if (isValidForm.value) {
     const dateArray = selectedDate.value.split(" ");
     const date = dateArray[0];
