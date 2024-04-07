@@ -30,6 +30,10 @@ const setFormData = (data) => {
   height: 85vh;
   padding-left: 40px;
   padding-top: 50px;
+  @media (width <= 800px) {
+    padding-left: 10px;
+    padding-top: 15px;
+  }
 
   .title {
     color: white;

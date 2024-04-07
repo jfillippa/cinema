@@ -1,8 +1,8 @@
 <template>
   <div class="slide-container">
-    <Score :score="movieData.score" />
     <div class="movie-image-container">
       <img :src="movieData?.image" class="movie-image" alt="Movie image" />
+      <Score :score="movieData.score" />
     </div>
     <div class="info-container">
       <div class="info-movie">
@@ -11,7 +11,7 @@
             {{ `${movieData.title}` }}
           </span>
         </div>
-        <div class="movie-synopsis-container">
+        <div v-if="!isMobile()" class="movie-synopsis-container">
           <span class="movie-synopsis">
             {{ `${movieData.synopsis}` }}
           </span>
@@ -52,22 +52,43 @@ const props = defineProps({
 const openTrailer = () => {
   window.open(props.movieData.trailer, "_blank");
 };
+
+function isMobile() {
+  if (screen.width <= 800) {
+    return true;
+  } else {
+    return false;
+  }
+}
 </script>
 <style lang="scss" scoped>
 .slide-container {
   width: 100%;
   display: grid;
   grid-template-columns: 35fr 65fr;
+  @media (width <= 800px) {
+    grid-template-columns: 100fr;
+  }
 
   .movie-image-container {
+    position: relative;
     display: flex;
     width: 100%;
     margin-top: 30px;
     margin-left: 15px;
     justify-content: right;
+    @media (width <= 800px) {
+      justify-content: center;
+      margin-left: 0;
+    }
 
     .movie-image {
       height: 75vh;
+      width: 29vw;
+      @media (width <= 800px) {
+        width: 400px;
+        height: 65vh;
+      }
     }
   }
 
@@ -77,6 +98,10 @@ const openTrailer = () => {
     gap: 50px;
     margin-left: 15px;
     padding-block: 50px;
+    @media (width <= 800px) {
+      padding-block: 0;
+      gap: 0;
+    }
 
     .info-movie {
       background-color: rgba(217, 217, 217, 0.5);
@@ -85,11 +110,22 @@ const openTrailer = () => {
       border-radius: 0 15px 15px 0;
       border-left: 0;
       height: 70%;
+      @media (width <= 800px) {
+        border: 0;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+      }
 
       .movie-title {
         font-size: 60px;
         padding-right: 20px;
         border-bottom: 1px solid;
+        @media (width <= 800px) {
+          color: white;
+          border-bottom: 0;
+          font-size: 40px;
+        }
       }
 
       .movie-synopsis-container {
@@ -107,6 +143,9 @@ const openTrailer = () => {
       align-items: end;
       gap: 50px;
       cursor: pointer;
+      @media (width <= 800px) {
+        margin-bottom: 20px;
+      }
 
       .button-container {
         display: flex;

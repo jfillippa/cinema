@@ -18,11 +18,14 @@ defineProps({
   padding: 40px 80px;
   width: 100vw;
   min-height: 90vh;
+  @media (width <= 800px) {
+    padding: 10px;
+  }
 
   .title {
     color: white;
     font-size: 35px;
-    font-weight: bolud;
+    font-weight: bold;
   }
 
   .card-container {
@@ -30,6 +33,10 @@ defineProps({
     display: grid;
     grid-template-columns: repeat(auto-fill, 200px);
     grid-gap: 40px;
+    @media (width <= 800px) {
+      padding: 10px 0 0 0;
+      justify-content: center;
+    }
   }
 }
 </style>

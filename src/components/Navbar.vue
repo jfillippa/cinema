@@ -2,9 +2,9 @@
   <nav class="navbar-container">
     <img src="/images/logo.svg" class="logo" @click="goHome" />
     <div class="buttons-container">
-      <a href="#carrousel" class="bold"> Destacadas </a>
-      <a href="#movie-list"> Cartelera </a>
-      <BuyTicketButton />
+      <a v-if="!isMobile()" href="#carrousel" class="bold"> Destacadas </a>
+      <a v-if="!isMobile()" href="#movie-list"> Cartelera </a>
+      <BuyTicketButton :is-button="!isMobile()"/>
     </div>
   </nav>
 </template>
@@ -17,6 +17,14 @@ const router = useRouter();
 const goHome = () => {
   router.push({ path: "/" });
 };
+
+function isMobile() {
+  if (screen.width <= 800) {
+    return true;
+  } else {
+    return false;
+  }
+}
 </script>
 <style lang="scss" scoped>
 .navbar-container {

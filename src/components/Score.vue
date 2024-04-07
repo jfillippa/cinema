@@ -29,7 +29,12 @@ defineProps({
   height: 70px;
   width: 90px;
   border-radius: 10px;
-  margin: 15px;
+  left: 0vw;
+  top: -20px;
   color: white;
+
+  @media (width <= 800px) {
+    left: calc(50% - 220px);
+  }
 }
 </style>

@@ -148,6 +148,10 @@ const submitForm = () => {
     margin-top: 15px;
     width: 100%;
     max-width: 450px;
+    @media (width <= 800px) {
+      width: 300px;
+      max-width: calc(100% - 60px);
+    }
 
     label {
       background-color: #282828;
@@ -170,6 +174,11 @@ const submitForm = () => {
   .buttons-container {
     display: flex;
     margin-top: 50px;
+    @media (width <= 800px) {
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
 
     button {
       height: 40px;
@@ -193,6 +202,9 @@ const submitForm = () => {
     .reset-button {
       width: 100px;
       color: grey;
+      @media (width <= 800px) {
+        width: 100px;
+      }
     }
 
     .submit-button {

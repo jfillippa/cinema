@@ -67,6 +67,9 @@ watch(index, (newIndex) => {
     grid-auto-flow: column;
     grid-auto-columns: 100%;
     transition: transform 0.75s ease;
+    @media (width <= 800px) {
+      height: auto;
+    }
 
     .slide {
       padding: 40px 80px 20px 80px;
@@ -75,6 +78,10 @@ watch(index, (newIndex) => {
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
+      @media (width <= 800px) {
+        height: auto;
+        padding: 10px 20px 5px 20px;
+      }
     }
   }
 
@@ -95,13 +102,19 @@ watch(index, (newIndex) => {
     }
   }
   .right {
-    top: 50%;
+    top: 250px;
     right: 10px;
+    @media (width <= 800px) {
+      top: 40%;
+    }
   }
 
   .left {
-    top: 50%;
+    top: 250px;
     left: 10px;
+    @media (width <= 800px) {
+      top: 40%;
+    }
   }
 }
 
