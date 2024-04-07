@@ -1,6 +1,6 @@
 <template>
   <div class="slide-container">
-    <Score :score="movieData.score"/>
+    <Score :score="movieData.score" />
     <div class="movie-image-container">
       <img :src="movieData?.image" class="movie-image" alt="Movie image" />
     </div>
@@ -19,26 +19,22 @@
       </div>
       <div class="buttons-container">
         <div>
-          <div class="button-container">
+          <div class="button-container" @click="openTrailer">
             <img
               src="/images/see-trailer.svg"
               class="button"
               alt="See trailer"
             />
           </div>
-          <div>
+          <div class="text-container">
             <span class="buttons-text"> Ver trailer </span>
           </div>
         </div>
         <div>
           <div class="button-container">
-            <img
-              src="/images/buy-ticket.svg"
-              class="button"
-              alt="Buy ticket"
-            />
+            <BuyTicketButton :is-button="false" />
           </div>
-          <div>
+          <div class="text-container">
             <span class="buttons-text"> Comprar ticket </span>
           </div>
         </div>
@@ -47,10 +43,15 @@
   </div>
 </template>
 <script setup>
-import Score from './Score.vue';
-defineProps({
+import BuyTicketButton from "./BuyTicketButton.vue";
+import Score from "./Score.vue";
+const props = defineProps({
   movieData: { type: Object, default: {} },
 });
+
+const openTrailer = () => {
+  window.open(props.movieData.trailer, "_blank");
+};
 </script>
 <style lang="scss" scoped>
 .slide-container {
@@ -66,7 +67,7 @@ defineProps({
     justify-content: right;
 
     .movie-image {
-      height: 80vh;
+      height: 75vh;
     }
   }
 
@@ -79,7 +80,7 @@ defineProps({
 
     .info-movie {
       background-color: rgba(217, 217, 217, 0.5);
-      padding: 10px;
+      padding: 10px 10px 10px 25px;
       border: 5px solid #554f95;
       border-radius: 0 15px 15px 0;
       border-left: 0;
@@ -108,6 +109,11 @@ defineProps({
       cursor: pointer;
 
       .button-container {
+        display: flex;
+        justify-content: center;
+      }
+
+      .text-container {
         display: flex;
         justify-content: center;
       }

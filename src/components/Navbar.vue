@@ -1,15 +1,22 @@
 <template>
   <nav class="navbar-container">
-    <img src="/images/logo.svg" class="logo" />
+    <img src="/images/logo.svg" class="logo" @click="goHome" />
     <div class="buttons-container">
-      <a class="bold"> Destacadas </a>
-      <a> Cartelera </a>
+      <a href="#carrousel" class="bold"> Destacadas </a>
+      <a href="#movie-list"> Cartelera </a>
       <BuyTicketButton />
     </div>
   </nav>
 </template>
 <script setup>
+import { useRouter } from "vue-router";
+
 import BuyTicketButton from "./BuyTicketButton.vue";
+const router = useRouter();
+
+const goHome = () => {
+  router.push({ path: "/" });
+};
 </script>
 <style lang="scss" scoped>
 .navbar-container {
@@ -26,21 +33,24 @@ import BuyTicketButton from "./BuyTicketButton.vue";
 
   .logo {
     height: 50px;
+    cursor: pointer;
   }
 
   .buttons-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 25px;
+    gap: 40px;
 
     .bold {
       font-weight: bold;
     }
 
     a {
+      font-size: 20px;
       color: white;
       cursor: pointer;
+      text-decoration: none;
     }
   }
 }

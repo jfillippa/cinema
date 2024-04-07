@@ -1,10 +1,13 @@
 <template>
   <div class="billboard-container">
     <a class="title"> En cartelera </a>
-    <div class="card-container"></div>
+    <div class="card-container">
+      <Card v-for="(movie, index) in movies" :key="index" :movie-data="movie" />
+    </div>
   </div>
 </template>
 <script setup>
+import Card from "./Card.vue";
 defineProps({
   movies: { type: Array, default: [] },
 });
@@ -23,7 +26,10 @@ defineProps({
   }
 
   .card-container {
-    padding: 30px;
+    padding: 30px 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 200px);
+    grid-gap: 40px;
   }
 }
 </style>

@@ -4,6 +4,7 @@
     :style="{
       background: `center / cover no-repeat url(${moviesData[index].banner})`,
     }"
+    id="carrousel"
   >
     <div class="arrow left">
       <img
