@@ -43,7 +43,7 @@
         <button class="reset-button" @click="resetForm">Reiniciar</button>
       </div>
     </div>
-    <div v-else class="form-container">
+    <form v-else class="form-container">
       <div class="field">
         <label> Nombre completo </label>
         <input v-model="name" pattern=".{4,}" required />
@@ -57,14 +57,16 @@
         <input v-model="cellphone" required />
       </div>
       <div class="buttons-container">
-        <button class="submit-button" @click="submitForm">Finalizar</button>
+        <button type="submit" class="submit-button" @click="submitForm">
+          Finalizar
+        </button>
         <button class="reset-button" @click="resetForm">Volver</button>
       </div>
-    </div>
+    </form>
   </div>
 </template>
 <script setup>
-import { ref, watch, watchEffect, defineEmits } from "vue";
+import { ref, watch, watchEffect, defineEmits, computed } from "vue";
 
 const props = defineProps({
   movies: { type: Array, default: [] },
@@ -86,9 +88,18 @@ watch(selectedMovie, (newSelectedMovie) => {
   selectedDate.value = newSelectedMovie.dates[0];
 });
 
+const isValidForm = computed(() => {
+  const nameValid = name.value.trim().length >= 4;
+  const emailValid = /\S+@\S+\.\S+/.test(email.value.trim());
+  const cellphoneValid = cellphone.value.trim() !== '';
+  return nameValid && emailValid && cellphoneValid;
+});
+
 const resetForm = () => {
-  selectedMovie.value = props.movies[0];
-  selectedSeat.value = props.seats[0];
+  name.value = "";
+  email.value = "";
+  cellphone.value = "";
+  movieDataForm.value = true;
 };
 
 function aplicarmask(value, mask) {
@@ -116,16 +127,21 @@ watchEffect(() => {
 });
 
 const submitForm = () => {
-  const dateArray = selectedDate.value.split(" ");
-  const date = dateArray[0];
-  const time = dateArray[1];
-  const formData = {
-    movie: selectedMovie.value,
-    date: date,
-    time: time,
-    name: name,
-  };
-  emit("form-data", formData);
+  console.log(isValidForm);
+  if (isValidForm.value) {
+    const dateArray = selectedDate.value.split(" ");
+    const date = dateArray[0];
+    const time = dateArray[1];
+    const formData = {
+      movie: selectedMovie.value,
+      date: date,
+      time: time,
+      name: name,
+    };
+    emit("form-data", formData);
+  } else {
+    console.error("El form no cumple con los requisitos para poder enviarse");
+  }
 };
 </script>
 <style lang="scss" scoped>
